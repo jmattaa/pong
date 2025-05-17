@@ -23,7 +23,7 @@ end
 
 function love.update(dt)
     player:update(dt)
-    opp:update(dt)
+    opp:follow(dt, ball)
     ball:update(dt, player, opp)
 end
 

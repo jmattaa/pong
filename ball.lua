@@ -16,7 +16,7 @@ function Ball.new(x, y)
     local self = setmetatable({}, Ball)
     self.x = x
     self.y = y
-    self.speed = 200
+    self.speed = 300
     self.size = 10
     self.dir = { x = 1, y = 1 }
     return self

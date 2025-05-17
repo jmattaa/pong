@@ -27,7 +27,10 @@ function Paddle:draw()
 end
 
 ---@param dt number
-function Paddle:update(dt)
+---@param opp? boolean
+function Paddle:update(dt, opp)
+    if opp then goto checkedge end
+
     if love.keyboard.isDown("down") or love.keyboard.isDown("s") then
         self.y = self.y + self.speed * dt
     end
@@ -35,10 +38,21 @@ function Paddle:update(dt)
         self.y = self.y - self.speed * dt
     end
 
-    if self.y < 0 then self.y = 0 end
-    if self.y + self.h > love.graphics.getHeight() then
-        self.y = love.graphics.getHeight() - self.h
+    ::checkedge::
+    local h = love.graphics.getHeight()
+    self.y = math.min(math.max(self.y, 0), h - self.h)
+end
+
+---@param dt number
+---@param ball Ball
+function Paddle:follow(dt, ball)
+    if ball.y > self.y + self.h / 2 then
+        self.y = self.y + self.speed * dt
     end
+    if ball.y < self.y + self.h / 2 then
+        self.y = self.y - self.speed * dt
+    end
+    self:update(dt, true)
 end
 
 return Paddle
