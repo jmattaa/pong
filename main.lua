@@ -31,4 +31,7 @@ function love.draw()
     player:draw()
     opp:draw()
     ball:draw()
+
+    player:drawscore()
+    opp:drawscore()
 end

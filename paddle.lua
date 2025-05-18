@@ -3,6 +3,7 @@
 ---@field y number
 ---@field w number
 ---@field h number
+---@field score number
 ---@field speed number
 Paddle = {}
 Paddle.__index = Paddle
@@ -18,6 +19,7 @@ function Paddle.new(x, y)
     self.y = y
     self.w = 10
     self.h = 100
+    self.score = 0
     self.speed = 400
     return self
 end
@@ -53,6 +55,16 @@ function Paddle:follow(dt, ball)
         self.y = self.y - self.speed * dt
     end
     self:update(dt, true)
+end
+
+function Paddle:drawscore()
+    local mx = (love.graphics.getWidth() - 100) / 2
+    local my = 10
+    local x = self.x + self.w + mx
+    if x > love.graphics.getWidth() then
+        x = self.x - mx
+    end
+    love.graphics.print(self.score, x, my)
 end
 
 return Paddle
