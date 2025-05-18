@@ -20,7 +20,7 @@ function love.load()
     opp.x = w - opp.w
     opp.y = (h / 2) - (opp.h / 2)
 
-    ball = Ball.new(w / 2, h / 2)
+    ball = Ball.new()
 end
 
 function love.resize(w, _)

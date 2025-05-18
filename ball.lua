@@ -11,20 +11,15 @@ Ball.__index = Ball
 
 local MAX_SPEED = 840
 
----Creates a new ball object
----@param x number
----@param y number
 ---@return Ball
-function Ball.new(x, y)
+function Ball.new()
     ---@type Ball
     local self = setmetatable({}, Ball)
-    self.x = x
-    self.y = y
+    self.x = love.graphics.getWidth() / 2
+    self.y = love.graphics.getHeight() / 2
     self.speed = 300
     self.size = 10
     self.dir = { x = 1, y = 1 }
-    self._startx = x
-    self._starty = y
     return self
 end
 
@@ -33,8 +28,8 @@ function Ball:draw()
 end
 
 function Ball:reset()
-    self.x = self._startx
-    self.y = self._starty
+    self.x = love.graphics.getWidth() / 2
+    self.y = love.graphics.getHeight() / 2
     self.dir = {
         x = math.random() > 0.5 and 1 or -1,
         y = math.random() > 0.5 and 1 or -1
